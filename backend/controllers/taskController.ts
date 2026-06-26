@@ -36,7 +36,18 @@ export const getTasks = async (
 
         // Filter tasks by status
         if (filter) {
-            whereClause.status = filter;
+            switch(filter){
+                case "active":
+                    whereClause.status = "To Do"
+                    break;
+                case "inactive":
+                    whereClause[Op.or] = [
+                        { status: 'Completed' },
+                        { status: 'Incomplete'}
+                    ]
+                default: 
+                    whereClause.status = filter;
+            }
         }
 
         // Fetch tasks and total count
@@ -69,7 +80,10 @@ export const createTask = async (
         const task = await Task.create(req.body);
 
         // Return created task
-        res.status(201).json(task);
+        res.status(201).json({
+            message: "Task successfully created",
+            task
+        });
     } catch (err) {
         next(err);
     }

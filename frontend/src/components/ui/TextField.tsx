@@ -38,16 +38,16 @@ export default function TextField({
 
             <div className="relative w-full">
                 <input
-                {...registration}
-                {...props}
-                disabled={disabled}
-                placeholder={placeholder}
-                onChange={handleChange}
-                className={cn(
-                    "w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-gray-900",
-                    icon && "pl-10",
-                    error &&  "border-red-500 focus:border-red-500"
-                )}
+                    {...registration}
+                    {...props}
+                    disabled={disabled}
+                    placeholder={placeholder}
+                    onChange={handleChange}
+                    className={cn(
+                        "w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-gray-900",
+                        icon && "pl-10",
+                        error &&  "border-red-500 focus:border-red-500"
+                    )}
                 />
 
                 {icon && (

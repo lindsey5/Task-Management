@@ -1,22 +1,28 @@
-import { useEffect, useState } from "react";
-import useGetTasks from "../hooks/use-get-tasks.hook";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import useGetTasks from "../../hooks/use-get-tasks.hook";
 import Pagination from "./Pagination";
 import TaskListSkeleton from "./TaskListSkeleton";
-import { useDebounce } from "../hooks/useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
 import TaskStatusFilter from "./TaskStatusFilter";
-import TextField from "./ui/TextField";
+import TextField from "../ui/TextField";
 import { Search } from "lucide-react";
+import type { Task } from "../../types/task.type";
+import TaskListItem from "./TaskListItem";
 
-export default function TaskList() {
+interface TaskListProps {
+  setSelectedTask: Dispatch<SetStateAction<Task | null>>;
+  setShow: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function TaskList({ 
+  setSelectedTask,
+  setShow
+} : TaskListProps) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [filter, setFilter] = useState<string>("");
 
   const searchDebounced = useDebounce(search, 800);
-
-  useEffect(() => {
-    setPage(1);
-  }, [searchDebounced, filter]);
 
   const { data, isLoading } = useGetTasks({
     page,
@@ -30,7 +36,7 @@ export default function TaskList() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div>
       {/* Header */}
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
@@ -53,40 +59,31 @@ export default function TaskList() {
         <TextField 
           className="flex-1"
           placeholder="Search Tasks"
-          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
           icon={<Search size={20}/>}
         />
-
-        <TaskStatusFilter filter={filter} setFilter={setFilter}/>
-        
+        <TaskStatusFilter 
+          filter={filter} 
+          setFilter={setFilter}
+          setPage={setPage}
+        />
       </div>
 
       {/* Task List */}
       <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
         {data?.tasks.length ? (
           data.tasks.map((task, index) => (
-            <div
+            <TaskListItem 
               key={task.id}
-              className={`flex items-start justify-between p-5 transition hover:bg-gray-50 ${
-                index !== data.tasks.length - 1
-                  ? "border-b border-gray-100"
-                  : ""
-              }`}
-            >
-              <div className="space-y-1">
-                <h2 className="font-medium text-gray-900">
-                  {task.title}
-                </h2>
-
-                <p className="text-sm text-gray-500">
-                  {task.description}
-                </p>
-              </div>
-
-              <span className="rounded-full border border-gray-200 px-3 py-1 text-xs font-medium text-gray-600">
-                {task.status}
-              </span>
-            </div>
+              className={`${index !== data.tasks.length - 1 && "border-b border-gray-100"}`}
+              setSelectedTask={setSelectedTask}
+              setShow={setShow}
+              task={task}
+            />
           ))
         ) : (
           <div className="py-16 text-center text-gray-500">

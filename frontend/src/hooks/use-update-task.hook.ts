@@ -13,14 +13,14 @@ type UpdateTaskResponse = {
     message: string;
 }
 
-const updateTask = (data : UpdateTask) => 
-    apiFetch<UpdateTaskResponse>("/api/tasks", {
+const updateTask = (id: number, data : UpdateTask) => 
+    apiFetch<UpdateTaskResponse>(`/api/tasks/${id}`, {
         method: "PUT",
         data
     })
 
 export default function useUpdateTask () {
     return useMutation({
-        mutationFn: (data : UpdateTask) => updateTask(data),
+        mutationFn: ({ data, id } : { data : UpdateTask, id: number}) => updateTask(id, data),
     })
 }

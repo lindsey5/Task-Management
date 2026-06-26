@@ -5,7 +5,7 @@ interface TaskAttributes {
     id: number;
     title: string;
     description: string;
-    status: "To Do" | "Completed" | "Incomplete"
+    status: "To Do" | "In Progress" | "Completed" | "Incomplete"
 }
 
 interface TaskCreationAttributes
@@ -18,7 +18,7 @@ class Task
     public id!: number;
     public title!: string;
     public description!: string;
-    public status!: "To Do" | "Completed" | "Incomplete";
+    public status!: "To Do" | "In Progress" | "Completed" | "Incomplete";
 }
 
 Task.init(
@@ -40,6 +40,7 @@ Task.init(
         status: {
             type: DataTypes.ENUM(
                 "To Do",
+                "In Progress",
                 "Completed",
                 "Incomplete"
             ),

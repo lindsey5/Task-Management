@@ -7,8 +7,13 @@ type CreateTask = {
     description: string;
 }
 
+type CreateTaskResponse = {
+    task: Task
+    message: string;
+}
+
 const createTask = (data : CreateTask) => 
-    apiFetch<Task>("/api/tasks", {
+    apiFetch<CreateTaskResponse>("/api/tasks", {
         method: "POST",
         data
     })
