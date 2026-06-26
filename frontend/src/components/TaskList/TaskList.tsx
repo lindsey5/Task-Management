@@ -50,7 +50,7 @@ export default function TaskList({
         </div>
 
         <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
-          Page {data?.page} / {data?.totalPages}
+          Page {data?.page} / {data?.totalPages || 1}
         </span>
       </div>
 
