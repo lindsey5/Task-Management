@@ -24,7 +24,6 @@ async up(queryInterface, Sequelize) {
       status: {
         type: Sequelize.ENUM(
           'To Do',
-          'In Progress',
           'Completed',
           'Incomplete'
         ),

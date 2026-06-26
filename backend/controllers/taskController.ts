@@ -22,7 +22,7 @@ export const getTasks = async (
         const search = req.query.search as string;
 
         // Status filter
-        const filter = (req.query.filter as string).toLowerCase();
+        const filter = req.query.filter ? String(req.query.filter).toLowerCase() : "";
 
         // Dynamic where clause
         const whereClause: any = {};
@@ -36,21 +36,7 @@ export const getTasks = async (
 
         // Filter tasks by status
         if (filter) {
-            switch(filter){
-                case "active":
-                    whereClause[Op.or] = [
-                        { status: 'To Do' },
-                        { status: 'In Progress' },
-                    ]
-                    break;
-                case "inactive":
-                    whereClause[Op.or] = [
-                        { status: 'Completed' },
-                        { status: 'Incomplete'}
-                    ]
-                default: 
-                    whereClause.status = filter;
-            }
+            whereClause.status = filter;
         }
 
         // Fetch tasks and total count
