@@ -20,7 +20,7 @@ export default function TaskStatusFilter ({
           }}
           className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-gray-900"
         >
-          <option value="">All Status</option>
+          <option value="">All</option>
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
           <option value="To Do">To Do</option>
