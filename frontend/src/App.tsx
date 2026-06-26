@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import TaskList from "./components/TaskList/TaskList"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Task } from "./types/task.type";
 import TaskModal from "./components/TaskModal/TaskModal";
 import { Toaster } from "sileo";
