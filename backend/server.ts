@@ -4,6 +4,7 @@ import cors from 'cors';
 import { connectDB } from "./config/db";
 import morgan from 'morgan';
 import taskRoutes from "./routes/taskRoutes";
+import { errorHandler } from "./middlewares/errorHandler";
 dotenv.config();
 
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
 app.use('/api/tasks', taskRoutes);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
