@@ -9,6 +9,7 @@ import useUpdateTask from "../../hooks/use-update-task.hook";
 import useCreateTask from "../../hooks/use-create-task.hook";
 import { promiseToast } from "../../utils/sileo";
 import Button from "../ui/Button";
+import { cn } from "../../utils/utils";
 
 interface TaskModalProps {
     task: Task | null;
@@ -72,7 +73,10 @@ export default function TaskModal ({
                     <label className="text-xs xl:text-sm text-primary font-medium">Description</label>
                     <textarea
                         placeholder="Enter task description"
-                        className="w-full rounded-lg resize-none border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-gray-900"
+                        className={cn(
+                            "w-full rounded-lg resize-none border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-gray-900",
+                            errors.description?.message &&  "border-red-500 focus:border-red-500"
+                        )}
                         rows={4}
                         {...register("description")}
                     />
