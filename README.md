@@ -33,77 +33,73 @@ A full-stack task management application that allows users to create, update, de
 - Zod
 
 ## Project Structure
+
 ```bash
 backend/
-├── config/
-├── controllers/
-├── middlewares/
-├── migrations/
-├── models/
-├── routes/
-└── schemas
+├── config/         # Database and application configuration
+├── controllers/    # Handles request and response logic
+├── middlewares/    # Custom Express middleware (validation, error handling, etc.)
+├── migrations/     # Sequelize database migration files
+├── models/         # Sequelize models representing database tables
+├── routes/         # Defines API endpoints and routes
+└── schemas/        # Zod validation schemas
 
 frontend/
 ├── src/
-│   ├── api/
-│   ├── components/
-│   ├── hooks/
-│   ├── schemas/
-│   ├── types/
-│   └── utils/
+│   ├── api/        # API request functions
+│   ├── components/ # Reusable React components
+│   ├── hooks/      # Custom React hooks
+│   ├── schemas/    # Zod validation schemas
+│   ├── types/      # TypeScript type definitions and interfaces
+│   └── utils/      # Utility/helper functions
 ```
 
 ## Dependencies
 
 ### Backend
-```bash
-"dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "dotenv-cli": "^11.0.0",
-    "express": "^5.2.1",
-    "morgan": "^1.11.0",
-    "mysql2": "^3.22.5",
-    "sequelize": "^6.37.8",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/morgan": "^1.9.10",
-    "@types/node": "^26.0.1",
-    "nodemon": "^3.1.14",
-    "sequelize-cli": "^6.6.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
-  }
-```
+
+| Dependency | Purpose |
+|------------|---------|
+| Express.js | REST API framework |
+| Sequelize | ORM for interacting with MySQL |
+| MySQL2 | MySQL database driver |
+| Zod | Request validation |
+| CORS | Enables cross-origin requests |
+| Morgan | HTTP request logging |
+| Dotenv | Environment variable management |
+
 ### Frontend
+
+| Dependency | Purpose |
+|------------|---------|
+| React | User interface library |
+| TypeScript | Static type checking |
+| Vite | Frontend build tool and development server |
+| Tailwind CSS | Utility-first CSS framework |
+| TanStack React Query | Server state management and data fetching |
+| React Hook Form | Form state management |
+| Zod | Form validation |
+| Lucide React | Icon library |
+| Framer Motion | Animations |
+| clsx | Conditional class name utility |
+| tailwind-merge | Merges Tailwind CSS class names |
+
+## Prerequisites
+
+Before running this project, make sure you have the following installed:
+
+- **Node.js** (v20 or later recommended)
+- **npm** (comes with Node.js)
+- **MySQL** (v8.0 or later recommended)
+- **Git** (for cloning the repository)
+
+You can verify your installations with:
+
 ```bash
-"dependencies": {
-    "@hookform/resolvers": "^5.4.0",
-    "@tailwindcss/vite": "^4.3.1",
-    "@tanstack/react-query": "^5.101.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.42.0",
-    "lucide-react": "^1.21.0",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "react-hook-form": "^7.80.0",
-    "sileo": "^0.1.5",
-    "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.1",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@types/node": "^24.13.2",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.2",
-    "oxlint": "^1.69.0",
-    "typescript": "~6.0.2",
-    "vite": "^8.1.0"
-  }
+node -v
+npm -v
+mysql --version
+git --version
 ```
 
 ## Quick Start (Recommended)
@@ -112,7 +108,7 @@ frontend/
 git clone https://github.com/lindsey5/Task-Management.git
 ```
 
-## 2. Install Dependecies
+## 2. Install Dependencies
 ### Backend
 ```bash
 cd backend
